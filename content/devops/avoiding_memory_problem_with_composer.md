@@ -4,30 +4,40 @@ Category: DevOps
 Tags: composer, memory, symfony, tip
 Slug: avoid-memory-problems-composer
 Authors: jandro_es
-Summary: Sometimes when you try to deploy a **Symfony** application or other PHP application using **Composer** on a Virtual Machine/Environment without much RAM memory (dedicated or allocated to PHP) you'll find that most of the times composer fails due to **exhausting** **memory**. With this quick win you can prevent that to happen.
+Summary: Sometimes when deploying a Symfony application or any other PHP application which uses **Composer** you'll find out that you ran out of memory. With this quick win you can prevent that to happen.
 
-Sometimes when you try to deploy a **Symfony** application or other PHP application using **Composer** on a Virtual Machine/Environment without much RAM memory (dedicated or allocated to PHP) you'll find that most of the times composer fails due to **exhausting** **memory**.
+Sometimes when deploying a Symfony application or any other PHP application which uses **Composer** you'll find out that you ran out of memory when executing:
 
-One solution, as mentioned on Github's Composer channel is to submit to your repository the composer.lock file and run install instead of update. The workflow will be as follows:
-
-On your development environment remove **composer.lock** from the **gitignore** file if present.
-
-Update your lock file with:
-
-~~~~{.language-markup}
+~~~~{.language-bash}
 	composer update
 ~~~~
 
-And finally on your server/deployment script instead of executing
+Instead of increase (you might even don't have anymore) the memory allocated to *composer*, a solution was pointed out in [Composer's Github Channel](https://github.com/composer/composer/issues).
 
-~~~~{.language-markup}
+The solution is to upload to the repository the **composer.lock** file created in you local environment. Remove **composer.lock** from your **gitignore** file, if present, and in your development machine execute:
+
+~~~~{.language-bash}
 	composer update
 ~~~~
 
-execute
+add it to your **git** repository
 
-~~~~{.language-markup}
+~~~~{.language-bash}
+	git add composer.lock
+~~~~
+
+and change you deployment script to execute 
+
+~~~~{.language-bash}
 	composer install
 ~~~~
 
-You'll notice that even on machines with as few as 512MB of RAM you'll be able to use Composer without memory problems.
+instead of
+
+~~~~{.language-bash}
+	composer update
+~~~~
+
+Now, aside of not running out of memory, your deployment should execute faster.
+
+
