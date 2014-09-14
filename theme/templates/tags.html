@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}tags - {{ SITENAME }}{% endblock %}
+{% block content %}
+<section class="content row index-page">
+	<h1>Tags</h1>
+	<ul class="category-list">
+	{% for category, n in categories %}
+		{% for tag in tag_cloud|sort %}
+            <li><a href="{{ SITEURL }}/tag/{{ tag.0 }}.html">{{ tag.0 }}</a></li>
+        {% endfor %}
+	{% endfor %}
+	</ul>
+</section>
+{% endblock %}

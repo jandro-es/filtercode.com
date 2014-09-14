@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" ><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="{{ DEFAULT_LANG }}" ><!--<![endif]-->
+
+{% block head %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/theme.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/prism.css" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/filtercode.css" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
+    <script src="{{ SITEURL }}/theme/js/vendor/modernizr.js"></script>
+
+    <meta name="description" content="{% block meta_description %}{{ SITENAME }}{% endblock meta_description %}" />
+    <meta name="keywords" content="{% block meta_keywords %}{{ DEFAULT_KEYWORDS }}{% endblock meta_keywords %}" />
+    <meta name="author" content="{{ SITENAME }}" />
+    <meta name="robots" content="index, follow" />
+    <meta name="copyright" content="{{ SITENAME }}" />
+
+    <meta property="og:title" content="{% block og_title %}{{ SITENAME }}{% endblock og_title %}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{% block og_url %}{{ SITEURL }}{% endblock og_url %}" />
+    <meta property="og:image" content="{% if LOGO_URL %}{{ LOGO_URL }}{% else %}/theme/img/default-logo.png{% endif %}" />
+    <meta property="og:site_name" content="{{ SITENAME }}" />
+    <meta property="og:description" content="{% block og_description %}{{ SITENAME }}{% endblock og_description %}"
+
+    <meta name="twitter:title" content="{% block twitter_title %}{{ SITENAME }}{% endblock twitter_title %}" />
+    <meta name="twitter:creator" content="{{ SITENAME }}" />
+    <meta name="twitter:site" content="{{ SITENAME }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content="{% block twitter_description %}{{ SITENAME }}{% endblock twitter_description %}" />
+
+    <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}" />
+    
+    {% if FEED_ATOM %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} ATOM Feed" />
+    {% endif %}
+    {% if FEED_RSS %}
+    <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+</head>
+{% endblock head %}
+
+<body>
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <a href="/"><img src="{% if LOGO_URL %}{{ LOGO_URL }}{% else %}/theme/img/default-logo.png{% endif %}" alt="{{ SITENAME }}"></a>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+        </ul>
+        
+        <section class="top-bar-section">
+            <ul class="right">
+                {% if DISPLAY_PAGES_ON_MENU %}
+                {% for page in PAGES %}
+                <li {% if page == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+                {% else %}
+                {% for cat, null in categories %}
+                <li {% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                {% endfor %}
+                {% endif %}
+                {% for name, url in MENUITEMS %}
+                <li><a href="{{ url }}">{{ name }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </nav>
+    
+    <main class="row main-holder">
+        <section class="large-12 columns">
+            {% block content %}{% endblock content %}
+        </section>
+    </main>
+    
+    <footer class="main-footer row">
+        {% block footer %}
+            {% include 'footer.html' %}
+        {% endblock footer %}
+    </footer>
+    
+    <script src="{{ SITEURL }}/theme/js/vendor/jquery.js"></script>
+    <script src="{{ SITEURL }}/theme/js/foundation.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/prism.js"></script>
+    
+    <script>
+        $(document).foundation();
+    </script>
+    {% include 'analytics.html' %}
+</body>
+</html>

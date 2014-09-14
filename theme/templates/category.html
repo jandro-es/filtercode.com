@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category }} - {{ SITENAME }}{% endblock title %}
+
+{% block content %}
+<section class="content row index-page">
+	<h1>{{ category|capitalize }}</h1>
+    <ul class="category-list category">
+        {% for article in articles %}
+            <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a> <small>(<time datetime="{{ article.date.isoformat() }}" pubdate>{{ article.locale_date }}</time>)</small>
+            <div class="social-inline">
+            	<ul>
+            		<li><a class="icon-twitter" href="javascript:void(0);" onclick='javascript:window.open("https://twitter.com/share?url={{ SITEURL }}/{{ article.url }}&text="+ encodeURIComponent("{{ article.title }}"), "", "width=626,height=436");'></a></li>
+            		<li><a class="icon-linkedin" href="javascript:void(0);" onclick="javascript:window.open('https://www.linkedin.com/cws/share?url={{ SITEURL }}/{{ article.url }}', '', 'width=626,height=436');"></a></li>
+            	</ul>
+            </div>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}

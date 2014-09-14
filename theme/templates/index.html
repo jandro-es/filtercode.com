@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for article in articles_page.object_list %}
+        <article class="index-item">
+            <h2><a class="no-change" href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title }}">{{ article.title }}</a></h2>
+            <time datetime="{{ article.date.isoformat() }}" pubdate>{{ article.locale_date }}</time>
+            <div class="social-inline">
+            	<ul>
+            		<li><a class="icon-twitter" href="javascript:void(0);" onclick='javascript:window.open("https://twitter.com/share?url={{ SITEURL }}/{{ article.url }}&text="+ encodeURIComponent("{{ article.title }}"), "", "width=626,height=436");'></a></li>
+            		<li><a class="icon-linkedin" href="javascript:void(0);" onclick="javascript:window.open('https://www.linkedin.com/cws/share?url={{ SITEURL }}/{{ article.url }}', '', 'width=626,height=436');"></a></li>
+            	</ul>
+            </div>
+            <div class="summary-content">{{ article.summary }}</div>
+            <div class="tags-list">
+            	<ul>
+            		{% for tag in article.tags %}
+            			<li><a href="{{ tag.url }}">{{ tag.name }}</a></li>
+            		{% endfor %}
+            	</ul>
+            </div>
+            <a href="{{ article.url }}" title="{{ article.title }}">Read more...</a>
+        </article>
+    {% endfor %}
+    {% include "pagination.html" %}
+{% endblock content %}

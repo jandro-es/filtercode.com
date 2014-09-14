@@ -1,0 +1,8 @@
+.idea
+output/
+venv/
+.DS_Store
+*.pyc
+*.pid
+*.swp
+pelicanconf.py
