@@ -25,15 +25,6 @@
         <section class="article-content">
             {{ article.content }}
         <section>
-        <section class="article-tags">
-            <div class="tags-list">
-                <ul>
-                    {% for tag in article.tags %}
-                        <li><a href="{{ tag.url }}">{{ tag.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>
     </article>
 
     {% if article.related_posts %}
