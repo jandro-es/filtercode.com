@@ -8,15 +8,7 @@ Summary: Using **SecureSocial** authentification module in **Play Framework's ve
 
 Since Play's version **2.3.x** the subsystem to load, configure and use modules has changed. Now instead of loading [SecureSocial module](http://securesocial.ws) in a *play.plugins* file inside your application configuration directory, you need to load and initialise it in a global application class.
 
-First we need to set up a new application using Activator's console:
-
-![Starting an application](/images/new-app1.jpg)
-
-now we select the **play-scala** template:
-
-![Starting an application](/images/new-app2.jpg)
-
-after some magic we'll have a fully functional basic Scala/Play application.
+First we need to set up a new application using Activator's console, we'll choose **play-scala** templates and after some magic we'll have a fully functional Scala/Play application.
 
 Now we need to tell **SBT** to load the SecureSocial module, we edit the file **build.sbt** and we add *ws.securesocial* module and the resolver needed to load the snapshot. It should look something like this:
 
