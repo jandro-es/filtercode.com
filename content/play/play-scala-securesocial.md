@@ -4,7 +4,7 @@ Category: Play
 Tags: play, scala, securesocial, opengraph
 Slug: play-scala-securesocial
 Authors: jandro_es
-Summary: Using **SecureSocial** authentification module in **Play Framework's versions 2.3.**
+Summary: Using **SecureSocial** authentification module in **Play Framework's versions 2.3.x**
 
 Since Play's version **2.3.x** the subsystem to load, configure and use modules has changed. Now instead of loading [SecureSocial module](http://securesocial.ws) in a *play.plugins* file inside your application configuration directory, you need to load and initialise it in a global application class.
 
