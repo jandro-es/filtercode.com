@@ -1,5 +1,6 @@
 Title: Avoid memory problems with Composer
 Date: 2014-07-03 10:20
+Last modified: 2014-07-04 10:20
 Category: DevOps
 Tags: composer, memory, symfony, tip
 Slug: avoid-memory-problems-composer
