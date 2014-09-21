@@ -1,6 +1,5 @@
 Title: Play framework and SecureSocial module.
 Date: 2014-09-21 10:20
-Last modified: 2014-09-21 11:20
 Category: Play
 Tags: play, scala, securesocial, opengraph
 Slug: play-scala-securesocial
