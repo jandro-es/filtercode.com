@@ -34,9 +34,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 XML_URL = """
 <url>
 <loc>{0}/{1}</loc>
-<lastmod>{2}</lastmod>
-<changefreq>{3}</changefreq>
-<priority>{4}</priority>
 </url>
 """
 
