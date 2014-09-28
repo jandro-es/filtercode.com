@@ -6,3 +6,5 @@ venv/
 *.pid
 *.swp
 pelicanconf.py
+cache/
+cache/*
