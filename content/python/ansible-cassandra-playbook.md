@@ -1,5 +1,5 @@
 Title: Apache Cassandra's development boxes with Ansible
-Date: 2014-09-28 10:20
+Date: 2014-09-27 10:20
 Category: Python
 Tags: devops, cassandra, ansible
 Slug: ansible-cassandra-playbook
