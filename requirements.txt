@@ -11,7 +11,7 @@ cssprefixer==1.4.1
 cssutils==1.0
 docutils==0.12
 feedgenerator==1.7
-pelican==3.4.0
+pelican==3.5.0
 pretty==0.1
 python-dateutil==2.2
 pytz==2014.4

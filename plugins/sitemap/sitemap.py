@@ -34,6 +34,9 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 XML_URL = """
 <url>
 <loc>{0}/{1}</loc>
+<lastmod>{2}</lastmod>
+<changefreq>{3}</changefreq>
+<priority>{4}</priority>
 </url>
 """
 
@@ -44,8 +47,8 @@ XML_FOOTER = """
 
 def format_date(date):
     if date.tzinfo:
-        tz = date.strftime('')
-        tz = tz[:-2]
+        tz = date.strftime('%z')
+        tz = tz[:-2] + ':' + tz[-2:]
     else:
         tz = "-00:00"
     return date.strftime("%Y-%m-%dT%H:%M:%S") + tz
@@ -157,11 +160,12 @@ class SitemapGenerator(object):
             pri = self.priorities['indexes']
             chfreq = self.changefreqs['indexes']
 
+        pageurl = '' if page.url == 'index.html' else page.url
 
         if self.format == 'xml':
-            fd.write(XML_URL.format(self.siteurl, page.url, lastmod, chfreq, pri))
+            fd.write(XML_URL.format(self.siteurl, pageurl, lastmod, chfreq, pri))
         else:
-            fd.write(self.siteurl + '/' + page.url + '\n')
+            fd.write(self.siteurl + '/' + pageurl + '\n')
 
     def get_date_modified(self, page, default):
         if hasattr(page, 'modified'):
@@ -177,7 +181,7 @@ class SitemapGenerator(object):
             for article in articles:
                 lastmod = max(lastmod, article.date.replace(tzinfo=self.timezone))
                 try:
-                    modified = self.get_date_modified(article, datetime.min.replace(tzinfo=self.timezone));
+                    modified = self.get_date_modified(article, datetime.min).replace(tzinfo=self.timezone)
                     lastmod = max(lastmod, modified)
                 except ValueError:
                     # Supressed: user will be notified.
