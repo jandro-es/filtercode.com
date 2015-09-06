@@ -54,7 +54,7 @@ install **npm**:
 	curl -L https://www.npmjs.org/install.sh | sh
 ~~~~
 
-Once everything is installed, we need to configure all the paths, so *node* and our system can find all files. Edit you **profile** or **bashrc* file and add the following exports:
+Once everything is installed, we need to configure all the paths, so *node* and our system can find all files. Edit you **profile** or **bashrc** file and add the following exports:
 
 ~~~~{.language-bash}
 	export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
